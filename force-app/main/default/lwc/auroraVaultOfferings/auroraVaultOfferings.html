@@ -1,0 +1,14 @@
+<template>
+    <lightning-card>
+        <div class="slds-p-around_medium">
+            <img src={couponUrl} alt="AuroraVault Coupon" style="max-width: 30%; border-radius: 8px;" />
+            <lightning-button
+                label="Download Coupon"
+                onclick={downloadImage}
+                variant="brand"
+                icon-name="utility:download"
+                class="slds-m-top_medium">
+            </lightning-button>
+        </div>
+    </lightning-card>
+</template>

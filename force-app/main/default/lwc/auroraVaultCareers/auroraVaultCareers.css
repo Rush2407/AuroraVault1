@@ -1,0 +1,14 @@
+.detailInfo {
+    /* display: flex; */
+    /* text-align: left; */
+    margin: 10px;
+    margin-bottom: 50px;
+    font-size: large;
+    font-weight: bold;
+}
+
+.desc {
+    font-size: medium;
+    font-weight: lighter;
+    margin-bottom: 30px;
+}

@@ -1,0 +1,48 @@
+.section1 {
+    /* display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background: black;
+    color: white;
+    margin-bottom: 20px; */
+    color:white;
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.sectioninfo {
+    padding-top: 200px;
+    padding-right: 50px;
+    line-height: 2;
+}
+
+div.gallery-item img {
+  width: 600px;
+  height: 400px;
+  object-fit: cover;
+}
+
+div.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+div.gallery-item {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+div.gallery-item div.desc  {
+  padding: 20px;
+  text-align: center;
+}
+
+div.gallery-item:hover {
+  border: 1px solid #777;
+}
+

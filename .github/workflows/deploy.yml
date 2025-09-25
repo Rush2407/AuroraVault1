@@ -1,0 +1,35 @@
+name: Deploy to Salesforce
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout source code
+      - name: Checkout source code
+        uses: actions/checkout@v3
+
+      # 2. Install Salesforce CLI (sf CLI 2.0)
+      - name: Install Salesforce CLI
+        run: |
+          npm install --global @salesforce/cli
+          sf --version
+
+      # 3. Authenticate using Auth URL
+      - name: Authenticate to Salesforce
+        run: |
+          echo "${{ secrets.SF_AUTH_URL }}" > authfile.txt
+          sf org login sfdx-url -f authfile.txt --alias DevHub --set-default
+
+      # 4. Run Apex tests before deployment
+      - name: Run Apex Tests
+        run: |
+          sf apex run test --target-org DevHub --test-level RunLocalTests --result-format human --code-coverage --wait 10
+
+      # 5. Deploy metadata (source code) to Developer Org
+      - name: Deploy to Developer Org
+        run: sf project deploy start --target-org DevHub

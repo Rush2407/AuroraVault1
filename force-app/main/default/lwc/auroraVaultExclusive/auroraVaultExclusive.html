@@ -1,0 +1,53 @@
+<template>
+    <!-- <div class="exclusive">
+        <div class="walletConnect">
+            <button type="button" onclick={handleClick}>Connect Wallet</button>
+        </div>
+        <p style="text-align: center;">Connect your wallet to check access.</p>
+        <div class="iconC">
+            <lightning-icon icon-name="custom:custom11" title="custom11"></lightning-icon>
+            <lightning-icon icon-name="custom:custom88" title="custom88"></lightning-icon>
+        </div>
+    </div> -->
+
+    <lightning-card title="NFT Gated Access (ERC-1155)" icon-name="custom:custom63">
+        <div class="slds-p-around_medium">
+            <lightning-input 
+              label="Enter Your Wallet Address"
+              value={walletAddress}
+              onchange={handleInput}
+              placeholder="0x123..."
+            ></lightning-input>
+
+            <!-- Show button only if wallet has 42 chars -->
+             <template if:true={isWalletValidLength}>
+                 <lightning-button 
+                   label="Check Access" 
+                   onclick={handleCheckNFT}
+                   variant="brand"
+                   disabled={isLoading}
+                   class="slds-m-top_small" 
+                 ></lightning-button>
+             </template>
+
+            <template if:true={isLoading}>
+                <p class="slds-m-top_small">Verifying NFT ownership...</p>
+            </template>
+
+            <template if:true={hasAccess}>
+                <p class="slds-text-color_success slds-m-top_small">
+                    Wallet owns the required NFT! Access granted.
+                    <c-aurora-vault-offerings></c-aurora-vault-offerings>
+                </p>
+            </template>
+
+            <template if:true={errorMessage}>
+                <p class="slds-text-color_error slds-m-top_small">
+                    {errorMessage}
+                </p>
+            </template>
+        </div>
+    </lightning-card>
+
+
+</template>
