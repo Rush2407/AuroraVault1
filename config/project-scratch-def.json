@@ -1,0 +1,21 @@
+{
+  "orgName": "Aurora Vault",
+  "edition": "Developer",
+  "language": "en_US",
+  "country": "US",
+  "features": [
+    "Communities",
+    "ServiceCloud",
+    "Sites",
+    "AuthorApex",
+    "API"
+  ],
+  "settings": {
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    },
+    "mobileSettings": {
+      "enableS1EncryptedStoragePref2": false
+    }
+  }
+}
