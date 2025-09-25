@@ -1,0 +1,36 @@
+.section1 {
+    /* display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background: black;
+    color: white;
+    margin-bottom: 20px; */
+    color:white;
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.sectioninfo {
+    padding-top: 200px;
+    padding-right: 50px;
+    line-height: 2;
+}
+
+.detailInfo {
+    /* display: flex; */
+    /* text-align: left; */
+    margin: 10px;
+    margin-bottom: 50px;
+    font-size: large;
+    font-weight: bold;
+}
+
+.desc {
+    font-size: medium;
+    font-weight: lighter;
+    margin-bottom: 30px;
+}

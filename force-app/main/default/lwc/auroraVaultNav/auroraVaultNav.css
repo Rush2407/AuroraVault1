@@ -1,0 +1,23 @@
+.navbar {
+        	display:flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #8B2E00;
+            color: #fff;
+            padding: 1rem;
+        }
+        
+        .nav-links {
+        	list-style: none;
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .nav-links a {
+        	color: #fff;
+            text-decoration: none;
+        }
+        
+        .nav-links a:hover{
+        	border-bottom: 2px solid #FFA500;
+        }
