@@ -7,31 +7,40 @@
     <img src={carImage2} alt="car image2" style="border-radius:5px; width:70%;"  />
   </div>
 
-  <h2 style="font-size: 20px; font-family: fantasy;">Aurora Automobiles Collection</h2>
-  <div class="gallery">
-    <div class="gallery-item">
-        <a target="_blank" href={carImage6}>
-            <img src={carImage6} alt="car image6" />
-        </a>
-        <div style="padding:10px; text-align:left">Andrietta "Angano"</div>
+    <div class="slds-size_6-of-6">
+        <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around_x-small">
+            <p style="font-size: 40px;
+                    font-family: monospace;
+                    background: bisque;">
+                <b>Aurora Automobiles Collections</b>
+            </p>
+            <lightning-carousel>
+                <lightning-carousel-image
+                    src = {carImage6}
+                    header = 'Andrietta "Angano"'
+                    alternative-text = 'Andrietta "Angano"'
+                    href = "javascript:void(0);">
+                </lightning-carousel-image>
+                <lightning-carousel-image
+                    src = {carImage4}
+                    header = "Chevrolet Corvette C8Z06"
+                    alternative-text = "Chevrolet Corvette C8Z06"
+                    href = "javascript:void(0);">
+                </lightning-carousel-image>
+                <lightning-carousel-image
+                    src = {carImage3}
+                    header = "Polaris Slingshot"
+                    alternative-text = "Polaris Slingshot"
+                    href = "javascript:void(0);">
+                </lightning-carousel-image>
+                <lightning-carousel-image
+                    src = {carImage5}
+                    header = "Rolls-Royce"
+                    alternative-text = "Rolls-Royce"
+                    href = "javascript:void(0);">
+                </lightning-carousel-image>
+            </lightning-carousel>
+        </div>
     </div>
-    <div class="gallery-item">
-        <a target="_blank" href={carImage4}>
-            <img src={carImage4} alt="car image4" />
-        </a>
-        <div style="padding:10px; text-align:left">Chevrolet Corvette C8Z06</div>
-    </div>
-    <div class="gallery-item">
-        <a target="_blank" href={carImage3}>
-            <img src={carImage3} alt="car image3" />
-        </a>
-        <div style="padding:10px; text-align:left">Polaris Slingshot</div>
-    </div>
-    <div class="gallery-item">
-        <a target="_blank" href={carImage5}>
-            <img src={carImage5} alt="car image5" />
-        </a>
-        <div style="padding:10px; text-align:left">Rolls-Royce</div>
-    </div>
-  </div>
+
 </template>

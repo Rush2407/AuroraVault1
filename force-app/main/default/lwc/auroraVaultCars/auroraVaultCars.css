@@ -19,30 +19,3 @@
     padding-right: 50px;
     line-height: 2;
 }
-
-div.gallery-item img {
-  width: 600px;
-  height: 400px;
-  object-fit: cover;
-}
-
-div.gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-div.gallery-item {
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-div.gallery-item div.desc  {
-  padding: 20px;
-  text-align: center;
-}
-
-div.gallery-item:hover {
-  border: 1px solid #777;
-}
-
