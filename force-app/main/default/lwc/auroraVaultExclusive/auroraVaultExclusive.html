@@ -9,7 +9,19 @@
             <lightning-icon icon-name="custom:custom88" title="custom88"></lightning-icon>
         </div>
     </div> -->
+    <!-- <template if:true={isClicked}>
+        <c-nft-collection></c-nft-collection>
+    </template> -->
+    <lightning-button 
+      variant="base"
+      icon-name="utility:collection"
+      label="NFT Marketplace Collection" 
+      onclick={handleClick}
+      hidden={isClicked}
+    >
+    </lightning-button>
 
+    <template if:false={isClicked}>
     <lightning-card title="NFT Gated Access (ERC-1155)" icon-name="custom:custom63">
         <div class="slds-p-around_medium">
             <lightning-input 
@@ -48,6 +60,5 @@
             </template>
         </div>
     </lightning-card>
-
-
+    </template>
 </template>

@@ -1,0 +1,9 @@
+<template>
+    <!-- customToast -->
+    <template if:true={visible}>
+        <div class="slds-notify slds-notify_toast slds-theme_{variant} toast-top">
+            <span class="slds-assistive-text">{variant}</span>
+            <h2>{message}</h2>
+        </div>
+    </template>
+</template>

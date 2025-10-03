@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>contractAddress</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>contractAddress</shortDescription>
+        <value>0xf84Cc9421F26A002D450C05302c39041523000Aa</value>
+    </labels>
+    <labels>
+        <fullName>tokenId</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>tokenId</shortDescription>
+        <value>1</value>
+    </labels>
+</CustomLabels>
