@@ -1,5 +1,7 @@
 import { LightningElement,track } from 'lwc';
 import hasValidNFT from '@salesforce/apex/NFTService.hasValidNFT';
+import NFTContractAddress from '@salesforce/label/c.contractAddress';
+import NFTTokenId from '@salesforce/label/c.tokenId';
 
 export default class AuroraVaultExclusive extends LightningElement {
 
@@ -8,10 +10,19 @@ export default class AuroraVaultExclusive extends LightningElement {
     @track hasAccess = false;
     @track errorMessage = '';
     @track isLoading = false;
+    @track isClicked = false;
+
+    handleClick(){
+        this.isClicked = true;
+        const nftCollectionPage = '/nft-collections'; 
+        window.location.href = nftCollectionPage;
+    }
 
     //Hardcode ERC-1155 details (replace with your NFT contract + tokenId)
-    contractAddress = '0xf84Cc9421F26A002D450C05302c39041523000Aa';
-    tokenId = '1'; //ERC-1155 token ID you want to check
+    // contractAddress = '0xf84Cc9421F26A002D450C05302c39041523000Aa';
+    // tokenId = '1'; //ERC-1155 token ID you want to check
+    contractAddress= NFTContractAddress;
+    tokenId = NFTTokenId;
 
     get isWalletValidLength(){
         return this.walletAddress && this.walletAddress.length === 42;

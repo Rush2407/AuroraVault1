@@ -8,5 +8,47 @@
         <members>*</members>
         <name>StaticResource</name>
     </types>
+    <types>
+        <members>NFTApiMock</members>
+        <members>NFTService</members>
+        <members>NFTServiceTest</members>
+        <members>OpenSeaCollectionController</members>
+        <members>OpenSeaCollectionControllerTest</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>auroraVaultAbout</members>
+        <members>auroraVaultCareers</members>
+        <members>auroraVaultCars</members>
+        <members>auroraVaultNav</members>
+        <members>auroraVaultHome</members>
+        <members>auroraVaultWatches</members>
+        <members>auroraVaultOfferings</members>
+        <members>auroraVaultExclusive</members>
+        <members>nftCollection</members>
+        <members>customToast</members>
+        <name>LightningComponentBundle</name>
+    </types>
+    <types>
+        <members>OpenSea_API</members>
+        <name>RemoteSiteSetting</name>
+    </types>
+    <types>
+    <members>*</members>
+        <name>CspTrustedSite</name>
+    </types>
+    <types>
+    <members>OpenSea_Access</members>
+        <name>PermissionSet</name>
+    </types>
+    <types>
+        <members>Admin</members>
+        <name>Profile</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>CustomLabel</name>
+    </types>
+
     <version>64.0</version>
 </Package>
