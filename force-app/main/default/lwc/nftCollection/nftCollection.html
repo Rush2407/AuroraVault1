@@ -14,6 +14,14 @@
         <lightning-input type="text" label="Enter Collection Name" placeholder="Search.." onkeyup={handleKey}></lightning-input>
     </div>
 
+    <!-- spinner -->
+    <template if:true={isLoading}>
+        <div class="spinner-container">
+            <div class="spinner-overlay">
+                <lightning-spinner alternative-text="Loading NFTs..." size="medium" variant="brand"></lightning-spinner>
+            </div>
+        </div>
+    </template>
     
    
     <!-- grid structure -->
