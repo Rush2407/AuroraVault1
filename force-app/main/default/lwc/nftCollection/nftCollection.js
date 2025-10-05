@@ -5,6 +5,7 @@ export default class NftCollection extends LightningElement{
     @track nfts = [];
     @track slug = 'thevisitors';
     @track isShowModal = false;
+    @track isLoading = false;
 
     nftName
     nftImage
@@ -26,7 +27,8 @@ export default class NftCollection extends LightningElement{
     //search functionality using Debouncing
     handleKey(event){
         this.slug = event.target.value;
-        window.clearTimeout(this.timer)
+        window.clearTimeout(this.timer);
+        this.isLoading = true;
         this.timer = setTimeout(()=>{
                 this.loadNFTs(); 
         },3000)
@@ -66,6 +68,9 @@ export default class NftCollection extends LightningElement{
         .catch( error =>{
             if(error)
                 this.template.querySelector('c-custom-toast').show();
+        })
+        .finally(()=>{
+            this.isLoading = false;
         });
     }    
 }
