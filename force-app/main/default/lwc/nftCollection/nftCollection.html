@@ -28,7 +28,7 @@
         <div class="slds-grid slds-wrap">
             <template for:each={nfts} for:item="nft">
                 <lightning-card key ={nft.identifier} title={nft.name} class="slds-col slds-size_1-of-4 slds-p-around_x-small" data-id={nft.identifier} onclick={showModalBox}>
-                    <img src={nft.image_url} alt={nft.name} style="width: 100%;" />
+                    <img src={nft.image_url} alt={nft.name} style="width: 100%;"  />
                     <p class="slds-p-around_medium">{nft.token_standard}</p>
                     <a href={nft.opensea_url} class="slds-p-around_medium" target="_blank">Click to View on OpenSea</a>
                 </lightning-card>

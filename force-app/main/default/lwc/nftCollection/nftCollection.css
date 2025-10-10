@@ -1,3 +1,7 @@
+.slds-col {
+    background: #c36868;
+}
+
 .back-button::highlight {
     color:rgb(27, 150, 159);
 }

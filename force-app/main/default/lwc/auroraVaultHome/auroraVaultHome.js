@@ -1,6 +1,7 @@
 import { LightningElement } from 'lwc';
 import AURORAVAULT_IMAGES from '@salesforce/resourceUrl/car_Images';
-import EMAIL_ICON from '@salesforce/resourceUrl/vault_Images';	 
+import EMAIL_ICON from '@salesforce/resourceUrl/vault_Images';
+
 export default class AuroraVaultHome extends LightningElement {
     
     get carImage(){
