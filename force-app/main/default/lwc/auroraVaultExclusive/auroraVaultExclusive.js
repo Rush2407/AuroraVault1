@@ -18,9 +18,9 @@ export default class AuroraVaultExclusive extends LightningElement {
         window.location.href = nftCollectionPage;
     }
 
-    //Hardcode ERC-1155 details (replace with your NFT contract + tokenId)
-    // contractAddress = '0xf84Cc9421F26A002D450C05302c39041523000Aa';
-    // tokenId = '1'; //ERC-1155 token ID you want to check
+    // ERC-1155 details (replace with your NFT contract + tokenId)
+    // contractAddress 
+    // tokenId 
     contractAddress= NFTContractAddress;
     tokenId = NFTTokenId;
 

@@ -8,7 +8,6 @@ export default class AuroraVaultHome extends LightningElement {
         return AURORAVAULT_IMAGES + '/car1.jpg';
     }
 
-
     get email_Icon(){
         return EMAIL_ICON + '/email_chatter.svg';
     }
