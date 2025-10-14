@@ -1,170 +1,254 @@
-# AuroraVault1: NFT-Gated Access Portal (Web3 + Salesforce Experience Cloud)
+# AuroraVault: NFT-Gated Access Portal (Web3 + Salesforce Experience Cloud)
 
 ## Overview
 
-AuroraVault is a Luxury Brand Company that has developed a luxury brand portal using Salesforce Experience Cloud. This project enables users to access gated content on the Experience Cloud site only if their wallet holds a specific NFT.
+AuroraVault is a Luxury Brand Company that has developed a luxury brand portal using Salesforce Experience Cloud.  
+This project enables users to access gated content on the Experience Cloud site only if they own a valid NFT (on Polygon) from the brand’s NFT collection. The project demonstrates advanced integration of Web3 (NFTs, Wallets, Smart Contracts) with Salesforce Experience Cloud for real-world luxury experiences.
+
+---
 
 ## Technologies Used
 
-- **Salesforce Experience Cloud**
+- **Experience Cloud**
 - **Apex**
 - **Lightning Web Components (LWC)**
-- **Web3 Integrations** (Wallets, NFTs, Smart Contracts)
-- **CI/CD Deployment** with GitHub Actions
-- **Git & GitHub**
-
-## Roles & Responsibilities
-
-This project simulates a real-world deployment process, involving multiple roles:
-
-- **DevOps**: Set up the GitHub repository (single source of truth), create a `dev` branch for developers, and configure a CI/CD pipeline to trigger deployments when PRs are merged to `main`.
-- **Developer**: Build and customize the project in a Salesforce scratch org, push changes to the `dev` branch, and create pull requests for production deployment.
-- **Release Management (RM)**: Deploy changes to the production (developer) org.
+- **Web3 Integrations (Wallets, NFTs, Smart Contracts)**
+- **OpenSea API**
 
 ---
 
-## Setup and Deployment Steps
+## Key Features
 
-### 1. Salesforce Developer Org Creation
+1. **NFT Display from OpenSea on Salesforce Experience Cloud Site**  
+   - Fetch and show NFTs from any OpenSea collection using the OpenSea v2 API.
+   - Collection slug is user-configurable for dynamic data loading.
 
-- Sign up: [Salesforce Developer Sign Up](https://developer.salesforce.com/developer-legacy/signup)
-- Change My Domain:  
-  `Setup > Company Settings > My Domain > Edit`  
-  Rename to `auroravault` and deploy.
+2. **Dynamic NFT Gallery with Lightning Web Components (LWC)**  
+   - Interactive gallery/carousel to browse NFT images.
+   - Click any NFT for full details in a modal (name, image, description, token ID, contract address).
 
-### 2. Enable Dev Hub & Salesforce CLI
+3. **Dynamic Slug Input**  
+   - User can input an OpenSea collection slug to view a different collection.
 
-- `Setup > Dev Hub > Enable`
-- Install [Salesforce CLI](https://developer.salesforce.com/tools/sfdxcli)
+4. **Default Collection on Page Load**  
+   - Loads a default NFT collection when the page first loads.
+   - Updates the gallery when a new collection is searched.
 
-### 3. Initialize Project Locally
+5. **Loading Spinner**  
+   - Visually engaging spinner is displayed during data fetching to indicate loading state.
 
-```sh
-sf project generate -n aurora-vault
-cd aurora-vault
-sf org login web -d -a DevHub
-```
+6. **Custom Toast with Animation**  
+   - If no NFTs are found, a custom animated toast notifies the user (e.g., “NFT not found”).
 
-- Create `project-scratch-def.json` (see `Notes.txt` for sample)
+7. **Secure and Scalable API Integration**  
+   - Uses Salesforce Named Credentials and External Credentials for secure API key management.
+   - API key never exposed in client-side code.
 
-### 4. Create Scratch Org & Push Source
+8. **Permission Set & User Access**  
+   - Custom permission set ensures only authorized users can access the API.
 
-```sh
-sf org create scratch -f config/project-scratch-def.json -a AuroraVaultScratchOrg --duration-days 30 -d
-sf org open -o AuroraVaultScratch
-```
+9. **CSP Trusted Site Configuration**  
+   - Ensures images from OpenSea domains are allowed in Salesforce Experience Cloud sites (CSP settings).
 
-### 5. Version Control with GitHub
+10. **Custom Metadata & Labels**  
+    - Easy configuration for contract address, token ID, and other parameters using Salesforce custom labels or metadata.
 
-- Create a public GitHub repo: `AuroraVault1`
-- Initialize Git locally:
-
-```sh
-git init
-git branch -M main
-git remote add origin https://github.com/<yourUsername>/AuroraVault1.git
-git add .
-git commit -m "Initial AuroraVault Portal commit"
-git push -u origin main
-git checkout -b dev
-git push -u origin dev
-```
-
-### 6. Store Auth in GitHub Secrets
-
-- Get your Dev Hub Auth URL:  
-  `sf org display -o DevHub --verbose`
-- Add to GitHub Secrets:  
-  - Name: `SF_AUTH_URL`
-  - Secret: *Your Sfdx Auth Url*
-
-### 7. Setup GitHub Actions Workflow
-
-- Create workflow file: `.github/workflows/deploy.yml`
-- Add deployment logic (see `deploy.yml` in your notes)
-
-### 8. Develop in Scratch Org
-
-- Enable Digital Experiences:  
-  `Setup > Digital Experiences > Settings > Enable`
-- Create AuroraVault Site:  
-  Template: "Build Your Own LWR"  
-  Site name: `auroravault`
-- Upload static resources (`car_Images`, `watch_Images`, `vault_Images`)
-- Add "Server_Error" image to asset library.
-
-#### Create Pages
-
-- Home, Cars, Watches, About, Careers, Exclusive (with respective URLs and API names)
-
-#### Create LWC Components & Apex Classes
-
-- `auroraVaultNav` (theme header)
-- `auroraVaultHome` (home page content)
-- `auroraVaultCars` (cars page content)
-- `auroraVaultWatches` (watches page content)
-- `auroraVaultAbout` (about page content)
-- `auroraVaultCareers` (careers page content)
-- `auroraVaultExclusive` (exclusive page content)
-- `auroraVaultOfferings`
-
-#### Named Credentials
-
-- Setup > Named Credentials > New Legacy  
-  - Label: Infura Polygon
-  - Name: Infura_Polygon
-  - URL: `https://polygon-mainnet.infura.io/v3/<your_api_key>`
-  - Username: Your Infura API key
-  - Password: Your Infura API secret
-
-#### Apex Classes
-
-- `NFTService.cls`
-- `NFTServiceTest.cls`
-- `NFTApiMock.cls`
-
-Add contractAddress & tokenId of your NFT in `AuroraVaultExclusive` component JS file.
-
-#### Metadata Retrieval
-
-```sh
-sf project retrieve start --manifest manifest/package.xml
-```
-
-#### Commit Changes
-
-```sh
-git add .
-git commit -m "Project deployment completed in scratch org"
-```
+11. **Graceful Error Handling**  
+    - Handles API errors, CSP issues, and empty collections gracefully with user-friendly messages and fallback UI.
 
 ---
 
-### 9. Deploy to Production Org
+## Pre-Requisites
 
-- Push to `dev` branch:  
-  `git push -u origin dev`
-- Create a pull request and merge.
-- CI/CD workflow will deploy metadata to production.
+Before starting implementation of this project, you need:
 
-### 10. Production Setup (Manual After Deployment)
+1. **MetaMask Wallet Address**
+2. **NFT Contract Address & Token Id**
+3. **Infura Key & Secret**
+4. **OpenSea API Key**
 
-Repeat page and component additions as above in the production site.  
-Publish & activate the site.
+---
+
+## Download Resources
+
+Download and create zip files named exactly as below and add them as static resources:
+
+- `car_Images`
+- `vault_Images`
+- `watch_Images`
+
+> These are uploaded under `force-app/main/default/staticresources`.
+
+---
+
+## Salesforce Org & Environment Setup
+
+1. **Create a Salesforce Developer Org**  
+   [Sign Up](https://developer.salesforce.com/developer-legacy/signup)
+
+2. **Change the My Domain Name**
+   - Log in to your Salesforce org (Developer Edition)
+   - Go to Setup → Company Settings → My Domain → Edit & change the name to `auroravault`
+   - Deploy your new domain
+
+3. **Setup Your Salesforce Dev Hub**
+   - Enable Dev Hub:  
+     Setup → Dev Hub → Enable
+   - Install Salesforce CLI (sf CLI) on your machine.
+   
+4. **Initialize Your Project Locally**
+   - Create project folder:
+     ```sh
+     sf project generate -n aurora-vault
+     cd aurora-vault
+     ```
+   - Authenticate Dev Hub locally:
+     ```sh
+     sf org login web -d -a DevHub
+     ```
+     (`-d` sets it as default, `-a` is alias)
+   - Connect & Open Dev Hub:
+     ```sh
+     sf org open -o AuroraVaultScratch
+     ```
+
+---
+
+## Develop Project
+
+### Steps
+
+a) **Enable Digital Experiences**  
+   - Setup → Search `Digital Experiences` → Settings → Enable Digital Experiences
+
+b) **Create AuroraVault Site**  
+   - New → Template “Build Your Own LWR” → Name: `auroravault`
+
+c) **Upload Zip Folders as Static Resources**  
+   - Upload `car_Images`, `watch_Images`, and `vault_Images` in Static Resources.
+
+d) **Add “Server_Error” Image in Content Asset Library**  
+   - App Launcher → Search Files → Library → Asset Library → Upload Asset File  
+   - Asset file Name: `Server_Error`  
+   - File Sharing: Select both options
+
+e) **Create Custom Labels to Store Contract Address & Token Id**
+   - Name: `contractAddress`  
+     Value: `"Your nft contract address"`
+   - Name: `tokenId`  
+     Value: `"Your nft token Id"`
+
+f) **Add Named Credentials for Infura**
+   - Setup → Quick Find → Search `Named Credentials` → New Legacy
+     - Label: `Infura Polygon`
+     - Name: `Infura_Polygon`
+     - URL: `https://polygon-mainnet.infura.io/v3/your_api_key`
+     - Identity Type: Named Principal
+     - Authentication Protocol: Password Authentication
+     - UserName: Your Infura Polygon API Key
+     - Password: Your Infura Polygon API Secret
+
+g) **Create Remote Site Setting (optional but recommended)**
+   - Setup → Remote Site Settings → New Remote Site
+     - Remote Site Name: `OpenSea_API`
+     - Remote Site URL: `https://api.opensea.io`
+     - Save
+
+h) **Add Named Credentials for OpenSea**
+
+   1. **Store API Key Securely with External Credentials**
+      - Setup → External Credentials → New
+        - Label: `OpenSea_Credential`
+        - Name: `OpenSea_Credential`
+        - Authentication Protocol: Custom
+      - Add Principal:
+        - Principal Name: `OpenSea_Principal`
+        - Authentication Parameters:  
+          - Name: `X-API-KEY`  
+          - Value: `your_opensea_api_key`
+      - Add to Custom Headers
+
+   2. **Map Permissions**
+      - Setup → Permission Sets → Create Permission Set (e.g., `OpenSea_Access`)
+      - External Credential Principal Access
+      - Assign the External Credential (`OpenSea_Credential`) to it
+      - Assign this Permission Set to logged-in User
+
+   3. **Create Named Credential**
+      - Setup → Named Credentials → New Named Credential
+        - Label: `OpenSea`
+        - Name: `OpenSea`
+        - URL: `https://api.opensea.io`
+        - Enabled for Callouts: Toggle ON
+        - External Credential: Select `OpenSea_Credential`
+        - Generate Authorization Header: **Uncheck**  
+          (OpenSea expects `X-API-KEY` header, not standard OAuth.)
+        - Save
+
+i) **Create Pages, LWC Components, & Apex Classes**
+
+1. **Setup Pages in Site**
+   - Home → New Page → Standard Page → New Blank Page
+     - Name: `Cars`         | url: `/cars`          | api name: `cars`
+     - Name: `Watches`      | url: `/watches`       | api name: `watches`
+     - Name: `About`        | url: `/about`         | api name: `about`
+     - Name: `Careers`      | url: `/careers`       | api name: `careers`
+     - Name: `Exclusive`    | url: `/exclusive`     | api name: `exclusive`
+     - Name: `NFT Collections` | url: `/nft-collections` | api name: `nft_collections`
+
+2. **Create & Add Components**
+   - `auroraVaultNav`  
+     _Add to Home Page → Theme Header Section_
+   - `auroraVaultHome`  
+     _Add to Home Page → Content Section_
+   - `auroraVaultCars`  
+     _Add to Cars Page → Content Section_
+   - `auroraVaultWatches`  
+     _Add to Watches Page → Content Section_
+   - `auroraVaultAbout`  
+     _Add to About Page → Content Section_
+   - `auroraVaultCareers`  
+     _Add to Careers Page → Content Section_
+   - `customToast`
+   - `nftCollection`  
+     _Add to NFT Collections Page → Content Section_
+   - `auroraVaultOfferings`
+   - `auroraVaultExclusive`  
+     _Add to Exclusive Page → Content Section_
+   - On “Service Not Available” page:  
+     Edit the markup:
+     ```html
+     <img src="{!contentAsset.Server_Error.1}" style="width:100%;"  />
+     ```
+
+3. **Create Apex Classes**
+   - `NFTService.cls`
+   - `NFTServiceTest.cls`
+   - `NFTApiMock.cls`
+   - `OpenSeaCollectionController.cls`
+   - `OpenSeaCollectionControllerTest.cls`
+   - _Add the contractAddress & tokenId of your NFT in `AuroraVaultExclusive` component JS file_
+
+4. **Publish & Activate Site**
 
 ---
 
 ## References
 
-- **NFT Creation Video:**  
-  [How to create an NFT](https://youtu.be/S306YeMqc1k?feature=shared)
+- **Create Metamask Wallet:**  
+  [YouTube Guide](https://youtu.be/-iwnN18Uzzw?si=B_yWmf9cF0iRvheQ)
+- **How to create an NFT:**  
+  [YouTube Guide](https://youtu.be/S306YeMqc1k?feature=shared)
 - **Get Infura Polygon Credentials:**  
-  [Infura](https://www.infura.io/)
+  [Infura.io](https://www.infura.io/)
+- **Get an OpenSea API key:**  
+  Request at OpenSea Dev Portal. You'll receive a key.
 - **Reference Images:**  
-  [Luxury Cars on Pixabay](https://pixabay.com/images/search/luxury%20car/)
+  [Pixabay Luxury Car Images](https://pixabay.com/images/search/luxury%20car/)
 
 ---
 
-## License
+## Notes
 
-This project is open source and available under the MIT License.
+- Ensure all names and API keys/secrets are stored securely.
+- For further assistance, consult Salesforce and OpenSea documentation.
